@@ -1,2 +1,2 @@
 # expenditure-tracker
-An Android-based mobile application to track daily expenditure
+An Android-based mobile application to track one's daily expenditure
