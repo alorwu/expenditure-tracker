@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Expenditure Tracker</string>
+    <string name="title_activity_login_activity">Login</string>
+    <string name="account_tv">Create Account</string>
+    <string name="username">Username</string>
+    <string name="login_button">Log In</string>
+    <string name="splash">Track your expenses</string>
+    <string name="intro_tv">The best way to track your expenses</string>
+    <string name="lg_text">Log in Account</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="register_button">Register</string>
+    <string name="tv_account">Don\'t have an Account? Register</string>
+    <string name="name">Fullname</string>
 </resources>
