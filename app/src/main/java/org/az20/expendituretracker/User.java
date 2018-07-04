@@ -11,6 +11,12 @@ import android.support.annotation.NonNull;
 public class User {
 
 
+    public User(String username, String password){
+
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String fullname, String username, String email, String password){
 
         this.name = fullname;
