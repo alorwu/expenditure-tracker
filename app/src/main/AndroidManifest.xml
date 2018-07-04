@@ -23,6 +23,7 @@
             android:name=".login_activity"
             android:label="@string/title_activity_login_activity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
     </application>
 
 </manifest>
