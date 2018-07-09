@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity {
                 usr_email = email.getText().toString();
                 usr_pass = password.getText().toString();
 
-                userRepository = new UserRepository(getApplication(), usr_fname, usr_pass);
 
                 if (usr_name.isEmpty() || usr_fname.isEmpty() ||
                         usr_email.isEmpty() || usr_pass.isEmpty()){
@@ -46,10 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }else{
 
-                        User user = new User(usr_fname, usr_name, usr_email, usr_pass);
-                        userRepository.addUser(user);
-                        Toast.makeText(RegisterActivity.this,
-                                    "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    userRepository = new UserRepository(getApplication(), usr_fname, usr_pass);
+                    User user = new User(usr_fname, usr_name, usr_email, usr_pass);
+                    userRepository.addUser(user);
+                    Toast.makeText(RegisterActivity.this,
+                                "Registered Successfully", Toast.LENGTH_SHORT).show();
 
                 }
             }

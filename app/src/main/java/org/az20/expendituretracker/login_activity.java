@@ -45,13 +45,13 @@ public class login_activity extends AppCompatActivity {
                 usr_name = username.getText().toString().trim();
                 usr_pass = password.getText().toString().trim();
 
-                userRepository = new UserRepository(getApplication(), usr_name, usr_pass);
 
                 if (usr_pass.isEmpty() || usr_name.isEmpty()) {
                     Toast.makeText(login_activity.this, "Enter username and password",
                             Toast.LENGTH_SHORT).show();
                 }else{
 
+                    userRepository = new UserRepository(getApplication(), usr_name, usr_pass);
                     int count = userRepository.findUser(usr_name, usr_pass);
                     if(count > 0){
                         Toast.makeText(login_activity.this, "Successful login",

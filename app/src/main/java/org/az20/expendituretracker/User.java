@@ -10,6 +10,21 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "users")
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "full_name")
+    private String name;
+
+    @ColumnInfo(name = "username")
+    private String username;
+
+    @ColumnInfo(name = "user_email")
+    private String email;
+
+    @ColumnInfo(name = "hashed_password")
+    private String password;
+
 
     public User(String username, String password){
 
@@ -25,29 +40,10 @@ public class User {
         this.password = password;
     }
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
-    public int getId() {
-        return id;
-    }
 
     public void setId(int id) {
         this.id = id;
     }
-
-    @ColumnInfo(name = "full_name")
-    private String name;
-
-    @ColumnInfo(name = "username")
-    private String username;
-
-    @ColumnInfo(name = "user_email")
-    private String email;
-
-    @ColumnInfo(name = "hashed_password")
-    private String password;
-
 
     public void setName(String fullname) {
         this.name = fullname;
@@ -65,6 +61,10 @@ public class User {
         this.password = password;
     }
 
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
