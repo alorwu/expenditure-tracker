@@ -20,10 +20,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login_activity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>

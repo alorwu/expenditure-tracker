@@ -1,4 +1,4 @@
-package org.az20.expendituretracker;
+package org.az20.expendituretracker.database;
 
 
 import android.arch.persistence.room.ColumnInfo;

@@ -1,4 +1,4 @@
-package org.az20.expendituretracker;
+package org.az20.expendituretracker.database;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -10,17 +10,15 @@ public class UserRepository {
     private int users;
 
 
-    UserRepository(Application application, String usr, String pwd) {
+    public UserRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mUserDao = db.userDao();
-        users = mUserDao.findUser(usr, pwd);
     }
 
 
-    public int findUser(String usr, String pwd) {
-        return users;
+    public int findUser(String user, String pwd) {
+        return mUserDao.findUser(user, pwd);
     }
-
 
 
     public void addUser (User user) {

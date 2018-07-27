@@ -1,4 +1,4 @@
-package org.az20.expendituretracker;
+package org.az20.expendituretracker.database;
 
 
 import android.arch.persistence.room.Room;
@@ -7,7 +7,7 @@ import android.content.Context;
 import android.arch.persistence.room.Database;
 
 @Database (entities = {User.class}, version = 1)
-public abstract class AppDatabase  extends RoomDatabase{
+public abstract class AppDatabase extends RoomDatabase{
 
     public abstract UserDao userDao();
 
