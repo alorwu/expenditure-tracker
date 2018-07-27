@@ -1,6 +1,7 @@
 package org.az20.expendituretracker;
 
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,13 +45,13 @@ public class RegisterActivity extends AppCompatActivity {
                         userEmail.isEmpty() || userPassword.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Fill out all fields!",
                             Toast.LENGTH_LONG).show();
-                }else{
-
+                } else {
                     userRepository = new UserRepository(getApplication());
                     User user = new User(userFullName, userName, userEmail, userPassword);
                     userRepository.addUser(user);
                     Toast.makeText(RegisterActivity.this,
                                 "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
                 }
             }
