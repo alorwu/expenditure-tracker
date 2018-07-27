@@ -1,32 +1,66 @@
 package org.az20.expendituretracker;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import org.az20.expendituretracker.fragments.BillsFragment;
+import org.az20.expendituretracker.fragments.CategoriesFragment;
+import org.az20.expendituretracker.fragments.HomeFragment;
+import org.az20.expendituretracker.fragments.SettingsFragment;
+import org.az20.expendituretracker.helpers.BottomNavigationViewHelper;
 
-    private static final int SPLASH_TIME_OUT =  4000;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run(){
+        loadFragment(new HomeFragment());
 
-                Intent intent = new Intent(MainActivity.this, login_activity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment;
+
+        switch (item.getItemId()) {
+            case R.id.home:
+                fragment = new HomeFragment();
+                break;
+            case R.id.bills:
+                fragment = new BillsFragment();
+                break;
+            case R.id.categories:
+                fragment = new CategoriesFragment();
+                break;
+            case R.id.settings:
+                fragment = new SettingsFragment();
+                break;
+            default:
+                fragment = new HomeFragment();
+        }
+
+        return loadFragment(fragment);
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if(fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame, fragment)
+                    .commitAllowingStateLoss();
+            return true;
+        }
+        return false;
     }
 }
