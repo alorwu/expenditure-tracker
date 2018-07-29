@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
 
 public class LoginActivity extends AppCompatActivity {
@@ -54,8 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     userRepository = new UserRepository(getApplication());
-                    int count = userRepository.findUser(userName, userPassword);
-                    if(count > 0){
+                    User user = userRepository.findUser(userName, userPassword);
+                    if(user != null && user.getName().equalsIgnoreCase(userName)){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
