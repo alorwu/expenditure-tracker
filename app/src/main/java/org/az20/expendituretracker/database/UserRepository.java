@@ -16,7 +16,7 @@ public class UserRepository {
     }
 
 
-    public int findUser(String user, String pwd) {
+    public User findUser(String user, String pwd) {
         return mUserDao.findUser(user, pwd);
     }
 
