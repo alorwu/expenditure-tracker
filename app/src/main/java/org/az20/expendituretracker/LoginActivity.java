@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
         usernameText = findViewById(R.id.usr_input);
         passwordText = findViewById(R.id.pass_input);
         TextView register = findViewById(R.id.textView);
