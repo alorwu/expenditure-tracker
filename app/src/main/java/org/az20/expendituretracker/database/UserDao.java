@@ -12,7 +12,7 @@ public interface UserDao {
     @Insert
     void addUser(User user);
 
-    @Query("select username, hashed_password from users where username = :user and hashed_password "
+    @Query("select * from users where username = :user and hashed_password "
            + "= :password")
     int findUser(String user, String password);
 
