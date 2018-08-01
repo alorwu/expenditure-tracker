@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+
 import org.az20.expendituretracker.fragments.BillsFragment;
 import org.az20.expendituretracker.fragments.CategoriesFragment;
 import org.az20.expendituretracker.fragments.HomeFragment;
@@ -14,6 +15,8 @@ import org.az20.expendituretracker.fragments.SettingsFragment;
 import org.az20.expendituretracker.helpers.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -63,4 +68,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
 }
