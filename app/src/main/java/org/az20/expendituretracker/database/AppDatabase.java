@@ -10,6 +10,7 @@ import android.arch.persistence.room.Database;
 public abstract class AppDatabase extends RoomDatabase{
 
     public abstract UserDao userDao();
+    public abstract IncomeDao incomeDao();
 
     private static AppDatabase mInstance;
 
@@ -17,7 +18,7 @@ public abstract class AppDatabase extends RoomDatabase{
         if (mInstance == null) {
             synchronized (AppDatabase.class) {
                 if (mInstance == null) {
-                    // Room running on main UI Thread
+                    // Room running on main UI Thread - findUser
                     mInstance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "user_database").allowMainThreadQueries()
                             .build();
