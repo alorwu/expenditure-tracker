@@ -2,6 +2,7 @@ package org.az20.expendituretracker;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
                     if(user != null && user.getName().equalsIgnoreCase(userName)){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
+                        SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                        mEditor.putBoolean("logged_in", true);
+                        mEditor.apply();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else{
                         Toast.makeText(LoginActivity.this, "Incorrect login credentials",
