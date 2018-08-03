@@ -44,7 +44,7 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
         if (mIncome != null){
             Income currentIncome = mIncome.get(position);
             holder.incomeItem.setText(currentIncome.getIncomeTitle());
-            holder.tvAmount.setText(currentIncome.getAmount());
+            holder.tvAmount.setText((String.valueOf(currentIncome.getAmount())));
         }else {
             holder.incomeItem.setText("No data");
             holder.tvAmount.setText("No data");
