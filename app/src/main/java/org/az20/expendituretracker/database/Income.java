@@ -1,9 +1,10 @@
 package org.az20.expendituretracker.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "income")
 public class Income {
 
     @PrimaryKey(autoGenerate = true)
@@ -11,6 +12,7 @@ public class Income {
     private String incomeTitle;
     private int amount;
 
+    @Ignore
     public Income(String incomeTitle, int amount){
         this.incomeTitle = incomeTitle;
         this.amount = amount;

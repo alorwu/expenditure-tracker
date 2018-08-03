@@ -18,8 +18,6 @@ public interface IncomeDao {
     LiveData<List<Income>> getAllIncome();
 
     @Delete
-    void clearAllIncome();
+    void deleteIncome(Income income);
 
-    @Query("delete from income where incomeTitle = :incomeTitle")
-    void deleteIncome(String incomeTitle);
 }
