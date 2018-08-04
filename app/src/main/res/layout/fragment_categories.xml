@@ -3,13 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".fragments.CategoriesFragment">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/categories_chart"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/categories"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:clickable="false"
+        android:layout_gravity="top"
+        android:orientation="horizontal"/>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top" />
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/cat_recycler_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:layout_marginBottom="10dp"/>-->
 
 </FrameLayout>
