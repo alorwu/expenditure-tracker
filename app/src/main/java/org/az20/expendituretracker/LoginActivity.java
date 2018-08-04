@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
+import org.az20.expendituretracker.helpers.PasswordHash;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -57,7 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     userRepository = new UserRepository(getApplication());
                     User user = userRepository.findUser(userName, userPassword);
-                    if(user != null && user.getUsername().equalsIgnoreCase(userName)){
+                    if(user != null && user.getUsername().equalsIgnoreCase(userName) &&
+                            PasswordHash.verifyHash(userPassword, user.getPassword())){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
                         SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);

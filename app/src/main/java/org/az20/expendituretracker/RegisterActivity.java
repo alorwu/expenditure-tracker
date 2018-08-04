@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
+import org.az20.expendituretracker.helpers.PasswordHash;
 import org.az20.expendituretracker.helpers.Validation;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -51,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 } else {
 
-                    if (!Validation.userValidation(userFullName)){
+                    if (!Validation.nameValidation(userFullName)){
                         usernameText.setError(getString(R.string.error_name));
                         return;
                     }
@@ -70,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     userRepository = new UserRepository(getApplication());
+                    userPassword = PasswordHash.hashPassword(userPassword);
                     User user = new User(userFullName, userName, userEmail, userPassword);
                     userRepository.addUser(user);
                     Toast.makeText(RegisterActivity.this,
