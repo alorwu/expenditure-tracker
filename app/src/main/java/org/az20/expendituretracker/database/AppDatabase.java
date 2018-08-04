@@ -12,6 +12,7 @@ public abstract class AppDatabase extends RoomDatabase{
     public abstract UserDao userDao();
     public abstract IncomeDao incomeDao();
     public abstract CategoryDao categoryDao();
+    public abstract ExpensesDao expensesDao();
 
     private static AppDatabase mInstance;
 

@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment{
 
 
         View mLayout = inflater.inflate(R.layout.fragment_home, container, false);
-        RecyclerView recyclerView = mLayout.findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = mLayout.findViewById(R.id.recycler_view_income);
         final IncomeListAdapter adapter = new IncomeListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
