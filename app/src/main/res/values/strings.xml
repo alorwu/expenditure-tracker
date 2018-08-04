@@ -28,4 +28,10 @@
     <string name="add_category">Add Category</string>
     <string name="add_expenses">Add Expenses</string>
     <string name="no_data">No data</string>
+    <string name="error_name">Enter a valid name</string>
+    <string name="error_email">Enter a valid email</string>
+    <string name="error_fields">All Fields Are Required!</string>
+    <string name="error_password">Password must have a minimum of 8 characters and must contain  at
+        least a lower case letter, an uppercase letter, a number and a character.
+    </string>
 </resources>

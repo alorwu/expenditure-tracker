@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                         mEditor.putBoolean("logged_in", true);
                         mEditor.apply();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     } else{
                         Toast.makeText(LoginActivity.this, "Incorrect login credentials",
                                 Toast.LENGTH_LONG).show();
