@@ -6,11 +6,12 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.arch.persistence.room.Database;
 
-@Database (entities = {User.class, Income.class}, version = 1)
+@Database (entities = {User.class, Income.class, Category.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase{
 
     public abstract UserDao userDao();
     public abstract IncomeDao incomeDao();
+    public abstract CategoryDao categoryDao();
 
     private static AppDatabase mInstance;
 

@@ -34,7 +34,7 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
 
     @NonNull
     @Override
-    public IncomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = mLayoutInflater.inflate(R.layout.recycler_view_item, parent, false);
         return new IncomeViewHolder(itemView);
     }
@@ -46,8 +46,8 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
             holder.incomeItem.setText(currentIncome.getIncomeTitle());
             holder.tvAmount.setText((String.valueOf(currentIncome.getAmount())));
         }else {
-            holder.incomeItem.setText("No data");
-            holder.tvAmount.setText("No data");
+            holder.incomeItem.setText(R.string.no_data);
+            holder.tvAmount.setText(R.string.no_data);
         }
     }
 

@@ -1,45 +1,34 @@
 package org.az20.expendituretracker;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
+
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.Toast;
 
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import org.az20.expendituretracker.database.Income;
 import org.az20.expendituretracker.fragments.BillsFragment;
 import org.az20.expendituretracker.fragments.CategoriesFragment;
+import org.az20.expendituretracker.fragments.CategoryDialogFragment;
+import org.az20.expendituretracker.fragments.ExpensesDialogFragment;
 import org.az20.expendituretracker.fragments.HomeFragment;
 import org.az20.expendituretracker.fragments.IncomeDialogFragment;
 import org.az20.expendituretracker.fragments.SettingsFragment;
 import org.az20.expendituretracker.helpers.BottomNavigationViewHelper;
-import org.az20.expendituretracker.helpers.IncomeListAdapter;
-import org.az20.expendituretracker.viewmodel.IncomeViewModel;
+import org.az20.expendituretracker.helpers.OnSaved;
 
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, OnSaved{
 
-import io.reactivex.internal.operators.observable.ObservableWindow;
-
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, IncomeDialogFragment.DialogListener{
-
-    private IncomeViewModel mViewModel;
+    FloatingActionMenu floatingActionMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         loadFragment(new HomeFragment());
 
+        floatingActionMenu = findViewById(R.id.fab_action_menu);
         FloatingActionButton fabIncome = findViewById(R.id.fab_action_menu_income);
         FloatingActionButton fabCategory = findViewById(R.id.fab_action_menu_category);
         FloatingActionButton fabExp = findViewById(R.id.fab_action_menu_expenses);
@@ -55,19 +45,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         fabIncome.setOnClickListener(this);
         fabCategory.setOnClickListener(this);
         fabExp.setOnClickListener(this);
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final IncomeListAdapter adapter = new IncomeListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        mViewModel = ViewModelProviders.of(this).get(IncomeViewModel.class);
-        mViewModel.getAllIncome().observe(this, new Observer<List<Income>>() {
-            @Override
-            public void onChanged(@Nullable List<Income> incomes) {
-                adapter.setIncome(incomes);
-            }
-        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -90,9 +67,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.categories:
                 fragment = new CategoriesFragment();
+                //floatingActionMenu.setVisibility(View.INVISIBLE);
                 break;
             case R.id.settings:
                 fragment = new SettingsFragment();
+                //floatingActionMenu.setVisibility(View.INVISIBLE);
                 break;
             default:
                 fragment = new HomeFragment();
@@ -116,23 +95,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void onClick(View v) {
 
         DialogFragment mDialogFragment;
+        String tag;
 
         int id = v.getId();
 
         switch (id)
         {
             case R.id.fab_action_menu_income:
-                Toast.makeText(getApplicationContext(), "Income menu item", Toast.LENGTH_SHORT).show();
                 mDialogFragment = new IncomeDialogFragment();
-                showDialog(mDialogFragment, "Income dialog");
+                tag = "Income dialog";
                 break;
             case R.id.fab_action_menu_category:
                 Toast.makeText(getApplicationContext(), "Category menu item", Toast.LENGTH_SHORT).show();
+                mDialogFragment = new CategoryDialogFragment();
+                tag = "Category dialog";
                 break;
             case R.id.fab_action_menu_expenses:
                 Toast.makeText(getApplicationContext(), "Expenses menu item", Toast.LENGTH_SHORT).show();
+                mDialogFragment = new ExpensesDialogFragment();
+                tag = "Category dialog";
                 break;
+            default:
+                return;
         }
+
+        showDialog(mDialogFragment, tag);
     }
 
     public void showDialog(DialogFragment dialogFragment, String tag){
@@ -145,8 +132,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void sendData(String title, int amount) {
+        Bundle mBundle = new Bundle();
+        mBundle.putString("title", title);
+        mBundle.putInt("amount", amount);
 
-        Income income = new Income(title, amount);
-        mViewModel.addIncome(income);
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(mBundle);
     }
 }

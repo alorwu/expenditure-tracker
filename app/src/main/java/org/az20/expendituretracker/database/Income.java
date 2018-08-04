@@ -24,7 +24,7 @@ public class Income {
         return incomeID;
     }
 
-    public void setIncomeID(int income_id) {
+    public void setIncomeID(int incomeID) {
         this.incomeID = incomeID;
     }
 
@@ -32,8 +32,8 @@ public class Income {
         return incomeTitle;
     }
 
-    public void setIncomeTitle(String income_title) {
-        this.incomeTitle = income_title;
+    public void setIncomeTitle(String incomeTitle) {
+        this.incomeTitle = incomeTitle;
     }
 
     public int getAmount() {

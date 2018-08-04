@@ -3,9 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/income_dialog"
     android:orientation="vertical"
-    >
+    tools:context="org.az20.expendituretracker.fragments.HomeFragment">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
