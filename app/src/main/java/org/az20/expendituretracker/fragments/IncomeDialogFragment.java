@@ -24,7 +24,7 @@ public class IncomeDialogFragment extends DialogFragment{
         View mView = getActivity().getLayoutInflater().inflate(R.layout.fragment_dialog, null);
 
         mBuilder.setView(mView);
-        mBuilder.setTitle(R.string.add_category);
+        mBuilder.setTitle(R.string.add_income);
 
         final TextInputEditText titleText = mView.findViewById(R.id.et_title);
         final TextInputEditText amountText = mView.findViewById(R.id.et_amount);
@@ -43,7 +43,7 @@ public class IncomeDialogFragment extends DialogFragment{
                     getDialog().dismiss();
                 }
                 else
-                    Toast.makeText(getContext(), " Amount field can't empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), " Amount field can't be empty.", Toast.LENGTH_SHORT).show();
 
             }
         });

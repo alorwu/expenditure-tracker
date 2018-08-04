@@ -12,12 +12,13 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
+import org.az20.expendituretracker.viewmodel.UserViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText usernameText, passwordText, emailText, fullnameText;
     private String userName, userEmail, userPassword, userFullName;
-    public UserRepository userRepository;
+    private UserViewModel mUserViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mUserViewModel = new UserViewModel(getApplication());
+
         fullnameText = findViewById(R.id.usr_fname);
         usernameText = findViewById(R.id.usr_name);
         emailText = findViewById(R.id.usr_email);
         passwordText = findViewById(R.id.usr_pass);
         Button registerBtn = findViewById(R.id.btn_register);
-
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,11 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if (userName.isEmpty() || userFullName.isEmpty() ||
                         userEmail.isEmpty() || userPassword.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Fill out all fields!",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 } else {
-                    userRepository = new UserRepository(getApplication());
                     User user = new User(userFullName, userName, userEmail, userPassword);
-                    userRepository.addUser(user);
+                    mUserViewModel.addUser(user);
                     Toast.makeText(RegisterActivity.this,
                                 "Registered Successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
