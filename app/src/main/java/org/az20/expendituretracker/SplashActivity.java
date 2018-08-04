@@ -1,6 +1,7 @@
 package org.az20.expendituretracker;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +20,14 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                if (sharedPreferences.getBoolean("logged_in", false)){
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    finish();
+                }else {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    finish();
+                }
             }
         }, SPLASH_TIME_OUT);
 

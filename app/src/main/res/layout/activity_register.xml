@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             android:inputType="textPersonName"
-            android:drawableStart="@drawable/ic_person_outline_black_24dp"
+            android:drawableStart="@drawable/ic_person"
             android:drawablePadding="10dp"
             android:layout_marginBottom="10dp"
             />
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/username"
             android:inputType="text"
-            android:drawableStart="@drawable/ic_person_outline_black_24dp"
+            android:drawableStart="@drawable/ic_person"
             android:drawablePadding="10dp"
             android:layout_marginBottom="10dp"
             />
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:drawableStart="@drawable/ic_mail_outline_black_24dp"
+            android:drawableStart="@drawable/ic_mail"
             android:drawablePadding="10dp"
             android:layout_marginBottom="10dp"
             />
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="@string/password"
-            android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+            android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"/>
 
         <Button
