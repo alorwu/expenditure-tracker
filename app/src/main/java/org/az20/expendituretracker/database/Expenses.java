@@ -11,12 +11,12 @@ public class Expenses {
     @PrimaryKey(autoGenerate = true)
     private int expensesID;
     private String expensesTitle;
-    private int amount;
+    private int expAmount;
 
     @Ignore
     public Expenses(String expensesTitle, int amount){
         this.expensesTitle = expensesTitle;
-        this.amount = amount;
+        this.expAmount = amount;
     }
 
     public Expenses(){}
@@ -37,11 +37,11 @@ public class Expenses {
         this.expensesTitle = expensesTitle;
     }
 
-    public int getExpensesAmount() {
-        return amount;
+    public int getExpAmount() {
+        return expAmount;
     }
 
-    public void setExpensesAmount(int amount) {
-        this.amount = amount;
+    public void setExpAmount(int amount) {
+        this.expAmount = amount;
     }
 }

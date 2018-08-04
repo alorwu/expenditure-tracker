@@ -37,7 +37,7 @@ public class ExpensesListAdapter extends RecyclerView.Adapter<ExpensesListAdapte
         if (mExpenses != null){
             Expenses currentExpenses = mExpenses.get(position);
             holder.incomeItem.setText(currentExpenses.getExpensesTitle());
-            holder.tvAmount.setText((String.valueOf(currentExpenses.getExpensesAmount())));
+            holder.tvAmount.setText((String.valueOf(currentExpenses.getExpAmount())));
         }else {
             holder.incomeItem.setText(R.string.no_data);
             holder.tvAmount.setText(R.string.no_data);
