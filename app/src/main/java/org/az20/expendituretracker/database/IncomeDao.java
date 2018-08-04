@@ -17,6 +17,7 @@ public interface IncomeDao {
     @Query("select * from income")
     LiveData<List<Income>> getAllIncome();
 
+    // TODO: Not implemented yet
     @Delete
     void deleteIncome(Income income);
 

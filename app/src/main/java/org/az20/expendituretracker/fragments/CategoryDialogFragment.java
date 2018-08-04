@@ -13,12 +13,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
-import org.az20.expendituretracker.helpers.OnSaved;
 
 public class CategoryDialogFragment extends DialogFragment implements View.OnClickListener{
 
     TextInputEditText titleText, amountText;
-    private OnSaved onSaved;
 
     @NonNull
     @Override
@@ -51,8 +49,7 @@ public class CategoryDialogFragment extends DialogFragment implements View.OnCli
                 final String title = titleText.getText().toString().trim();
                 final String amount = amountText.getText().toString().trim();
                 if (!amount.isEmpty()) {
-                    onSaved.sendData(title, Integer.parseInt(amount));
-                    Toast.makeText(getContext(), "Saved successfully.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();
                 }
                 else
@@ -62,17 +59,6 @@ public class CategoryDialogFragment extends DialogFragment implements View.OnCli
                 getDialog().dismiss();
                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
                 break;
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            onSaved = (OnSaved) context;
-        }catch (ClassCastException e){
-            throw new ClassCastException(context.toString() + " implement dialog listener");
         }
     }
 }

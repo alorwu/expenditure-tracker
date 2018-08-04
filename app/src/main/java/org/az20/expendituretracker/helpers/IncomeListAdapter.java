@@ -16,12 +16,9 @@ import java.util.List;
 public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.IncomeViewHolder> {
 
     class IncomeViewHolder extends RecyclerView.ViewHolder{
-        private final TextView incomeItem, tvAmount;
 
         private IncomeViewHolder(View itemView){
             super(itemView);
-            incomeItem = itemView.findViewById(R.id.tv_title);
-            tvAmount = itemView.findViewById(R.id.tv_amount);
         }
     }
 
@@ -35,20 +32,13 @@ public class IncomeListAdapter extends RecyclerView.Adapter<IncomeListAdapter.In
     @NonNull
     @Override
     public IncomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mLayoutInflater.inflate(R.layout.recycler_view_item, parent, false);
+        // Replace layout with corresponding layout
+        View itemView = mLayoutInflater.inflate(R.layout.fragment_home, parent, false);
         return new IncomeViewHolder(itemView);
     }
     @Override
     public void onBindViewHolder(@NonNull IncomeViewHolder holder, int position) {
-
-        if (mIncome != null){
-            Income currentIncome = mIncome.get(position);
-            holder.incomeItem.setText(currentIncome.getIncomeTitle());
-            holder.tvAmount.setText((String.valueOf(currentIncome.getAmount())));
-        }else {
-            holder.incomeItem.setText(R.string.no_data);
-            holder.tvAmount.setText(R.string.no_data);
-        }
+        // Bind holder to views. Income title and amount
     }
 
     public void setIncome(List<Income> income){

@@ -17,6 +17,7 @@ public interface ExpensesDao {
     @Query("select * from expenses")
     LiveData<List<Expenses>> getAllExpenses();
 
+    // TODO: Not implemented yet
     @Delete
     void deleteExpenses(Expenses expenses);
 }

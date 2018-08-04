@@ -26,22 +26,14 @@ public class ExpensesListAdapter extends RecyclerView.Adapter<ExpensesListAdapte
     @NonNull
     @Override
     public ExpensesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View mView = mLayoutInflater.inflate(R.layout.recycler_view_item, parent, false);
+        // Replace layout with corresponding layout
+        View mView = mLayoutInflater.inflate(R.layout.fragment_home, parent, false);
         return new ExpensesViewHolder(mView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ExpensesViewHolder holder, int position) {
-
-        if (mExpenses != null){
-            Expenses currentExpenses = mExpenses.get(position);
-            holder.incomeItem.setText(currentExpenses.getExpensesTitle());
-            holder.tvAmount.setText((String.valueOf(currentExpenses.getExpAmount())));
-        }else {
-            holder.incomeItem.setText(R.string.no_data);
-            holder.tvAmount.setText(R.string.no_data);
-        }
+        // Bind holder to views. Income title and amount
     }
 
     @Override
@@ -51,13 +43,15 @@ public class ExpensesListAdapter extends RecyclerView.Adapter<ExpensesListAdapte
         else return 0;
     }
 
+    public void setExpenses(List<Expenses> expenses){
+        mExpenses = expenses;
+        notifyDataSetChanged();
+    }
+
     class ExpensesViewHolder extends RecyclerView.ViewHolder{
-        private final TextView incomeItem, tvAmount;
 
         public ExpensesViewHolder(View itemView) {
             super(itemView);
-            incomeItem = itemView.findViewById(R.id.tv_title);
-            tvAmount = itemView.findViewById(R.id.tv_amount);
         }
     }
 }

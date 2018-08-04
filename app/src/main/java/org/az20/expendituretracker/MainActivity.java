@@ -24,9 +24,8 @@ import org.az20.expendituretracker.fragments.HomeFragment;
 import org.az20.expendituretracker.fragments.IncomeDialogFragment;
 import org.az20.expendituretracker.fragments.SettingsFragment;
 import org.az20.expendituretracker.helpers.BottomNavigationViewHelper;
-import org.az20.expendituretracker.helpers.OnSaved;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, OnSaved{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
 
     FloatingActionMenu floatingActionMenu;
 
@@ -67,11 +66,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.categories:
                 fragment = new CategoriesFragment();
-                //floatingActionMenu.setVisibility(View.INVISIBLE);
                 break;
             case R.id.settings:
                 fragment = new SettingsFragment();
-                //floatingActionMenu.setVisibility(View.INVISIBLE);
                 break;
             default:
                 fragment = new HomeFragment();
@@ -106,12 +103,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 tag = "Income dialog";
                 break;
             case R.id.fab_action_menu_category:
-                Toast.makeText(getApplicationContext(), "Category menu item", Toast.LENGTH_SHORT).show();
                 mDialogFragment = new CategoryDialogFragment();
                 tag = "Category dialog";
                 break;
             case R.id.fab_action_menu_expenses:
-                Toast.makeText(getApplicationContext(), "Expenses menu item", Toast.LENGTH_SHORT).show();
                 mDialogFragment = new ExpensesDialogFragment();
                 tag = "Category dialog";
                 break;
@@ -128,15 +123,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (fragmentManager != null) {
             dialogFragment.show(fragmentManager, tag);
         }
-    }
-
-    @Override
-    public void sendData(String title, int amount) {
-        Bundle mBundle = new Bundle();
-        mBundle.putString("title", title);
-        mBundle.putInt("amount", amount);
-
-        HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(mBundle);
     }
 }

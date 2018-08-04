@@ -25,21 +25,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mView = mLayoutInflater.inflate(R.layout.recycler_view_item, parent, false);
+        //Replace layout with corresponding recycler view layout
+        View mView = mLayoutInflater.inflate(R.layout.fragment_home, parent, false);
         return new CategoryViewHolder(mView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-
-        if (mCategory != null){
-            Category currentCategory = mCategory.get(position);
-            holder.incomeItem.setText(currentCategory.getCatTitle());
-            holder.tvAmount.setText((String.valueOf(currentCategory.getCatAmount())));
-        }else {
-            holder.incomeItem.setText(R.string.no_data);
-            holder.tvAmount.setText(R.string.no_data);
-        }
+        // Bind holder to views. Income title and amount
 
     }
 
@@ -50,13 +43,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         else return 0;
     }
 
-    class CategoryViewHolder extends RecyclerView.ViewHolder{
-        private final TextView incomeItem, tvAmount;
+    public void setCategory(List<Category> category){
+        mCategory = category;
+        notifyDataSetChanged();
+    }
 
+    class CategoryViewHolder extends RecyclerView.ViewHolder{
         private CategoryViewHolder(View itemView){
             super(itemView);
-            incomeItem = itemView.findViewById(R.id.tv_title);
-            tvAmount = itemView.findViewById(R.id.tv_amount);
         }
     }
 }

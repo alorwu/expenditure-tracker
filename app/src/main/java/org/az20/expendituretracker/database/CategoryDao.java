@@ -17,6 +17,7 @@ public interface CategoryDao {
     @Query("select * from category")
     LiveData<List<Category>> getAllCategories();
 
+    // TODO: Not implemented yet
     @Delete
     void deleteCategory(Category cat);
 }
