@@ -21,6 +21,7 @@ import org.az20.expendituretracker.home.IncomeStub;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class HomeFragment extends Fragment {
 
     TextView incomeTotalAmount, totalAmount, expensesAmount, incomeAmount;
@@ -34,10 +35,9 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         incomeAmount = view.findViewById(R.id.income_amount);
@@ -94,3 +94,4 @@ public class HomeFragment extends Fragment {
     }
 
 }
+

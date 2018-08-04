@@ -9,4 +9,6 @@
     <color name="colorGreen">#2CBC52</color>
     <color name="colorWhiteDark">#D9D5D1</color>
     <color name="colorBlack">#000000</color>
+
+    <color name="colorTransparent">#00ffffff</color>
 </resources>

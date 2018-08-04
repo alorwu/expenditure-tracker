@@ -7,8 +7,6 @@ public class UserRepository {
 
 
     private UserDao mUserDao;
-    private int users;
-
 
     public UserRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);

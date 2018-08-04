@@ -2,6 +2,7 @@ package org.az20.expendituretracker;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,18 +14,21 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
+import org.az20.expendituretracker.viewmodel.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameText, passwordText;
     private String userName, userPassword;
-    public UserRepository userRepository;
+    public UserViewModel mUserViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        mUserViewModel = new UserViewModel(getApplication());
 
         usernameText = findViewById(R.id.usr_input);
         passwordText = findViewById(R.id.pass_input);
@@ -47,21 +51,22 @@ public class LoginActivity extends AppCompatActivity {
                 userName = usernameText.getText().toString().trim();
                 userPassword = passwordText.getText().toString().trim();
 
-
                 if (userPassword.isEmpty() || userName.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter username and password",
                             Toast.LENGTH_SHORT).show();
                 }else{
-
-                    userRepository = new UserRepository(getApplication());
-                    User user = userRepository.findUser(userName, userPassword);
+                    User user = mUserViewModel.findUser(userName, userPassword);
                     if(user != null && user.getUsername().equalsIgnoreCase(userName)){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
+                        SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+                        mEditor.putBoolean("logged_in", true);
+                        mEditor.apply();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     } else{
                         Toast.makeText(LoginActivity.this, "Incorrect login credentials",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }
