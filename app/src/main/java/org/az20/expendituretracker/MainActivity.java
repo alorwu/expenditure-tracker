@@ -136,7 +136,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             editStatus.putBoolean("logged_in", false);
             editStatus.apply();
 
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            Intent logout = new Intent(Intent.ACTION_MAIN);
+            logout.addCategory(Intent.CATEGORY_HOME);
+            logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(logout);
             finish();
         }
     }
