@@ -43,7 +43,7 @@ public class Validation {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#@$&*_()%])(?=.*[\\d]).{6,}$";
+        final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#@$&*_()%])(?=.*[\\d]).{5,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(pass);
         return matcher.matches();

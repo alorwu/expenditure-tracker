@@ -33,7 +33,7 @@
     <string name="error_input">Must be between 3 to 10 characters long.</string>
     <string name="error_email">Enter a valid email</string>
     <string name="error_fields">All Fields Are Required!</string>
-    <string name="error_password">Password must have a minimum of 8 characters and must contain  at
+    <string name="error_password">Password must have a minimum of 5 characters and must contain  at
         least a lower case letter, an uppercase letter, a number and a character.
     </string>
     <string name="logout">Logout</string>
