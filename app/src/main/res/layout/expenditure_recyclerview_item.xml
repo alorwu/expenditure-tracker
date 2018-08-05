@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/expense_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transport"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Budget spent"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/budget_spent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$200.00"
+                android:textSize="14sp"
+                android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Actual budget"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/actual_budget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$330.00"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remaining"
+                android:textSize="12sp"
+                android:textColor="@color/colorBlack"/>
+            <TextView
+                android:id="@+id/remaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$130.00"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/expense_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="60"
+        android:visibility="visible" />
+</LinearLayout>

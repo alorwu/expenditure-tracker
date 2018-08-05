@@ -1,4 +1,4 @@
-package org.az20.expendituretracker.viewmodel;
+package org.az20.expendituretracker.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -26,7 +26,7 @@ public class ExpensesViewModel extends AndroidViewModel {
         return allExpenses;
     }
 
-    public void addExpenses(Expenses expenses){
-        expensesRepository.addExpenses(expenses);
+    public void addExpenses(Expenses expense){
+        expensesRepository.addExpenses(expense);
     }
 }

@@ -1,8 +1,8 @@
 package org.az20.expendituretracker.fragments;
 
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -13,17 +13,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.database.Expenses;
 import org.az20.expendituretracker.helpers.Validation;
+import org.az20.expendituretracker.viewmodels.ExpensesViewModel;
 
 public class ExpensesDialogFragment extends DialogFragment implements View.OnClickListener{
 
-    TextInputEditText titleText, amountText;
+    private TextInputEditText titleText, amountText;
+    private Activity activity;
+    private ExpensesViewModel expensesViewModel;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-        View mView = getActivity().getLayoutInflater().inflate(R.layout.fragment_dialog, null);
+        activity = getActivity();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
+        View mView = activity.getLayoutInflater().inflate(R.layout.fragment_dialog, null);
 
         mBuilder.setView(mView);
         mBuilder.setTitle(R.string.add_expenses);
@@ -35,6 +40,8 @@ public class ExpensesDialogFragment extends DialogFragment implements View.OnCli
 
         saveBtn.setOnClickListener(this);
         cancelBtn.setOnClickListener(this);
+
+        expensesViewModel = new ExpensesViewModel(activity.getApplication());
 
         return mBuilder.create();
     }
@@ -55,6 +62,10 @@ public class ExpensesDialogFragment extends DialogFragment implements View.OnCli
                     return;
                 }
                 if (!amount.isEmpty()) {
+                    Expenses expenses = new Expenses();
+                    expenses.setExpensesTitle(title);
+                    expenses.setExpAmount(Integer.parseInt(amount));
+                    expensesViewModel.addExpenses(expenses);
                     Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();
                 }

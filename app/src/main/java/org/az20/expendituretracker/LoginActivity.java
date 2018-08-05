@@ -13,14 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
-import org.az20.expendituretracker.database.UserRepository;
 import org.az20.expendituretracker.helpers.PasswordHash;
+import org.az20.expendituretracker.viewmodels.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameText, passwordText;
     private String userName, userPassword;
-    public UserRepository userRepository;
+    public UserViewModel mUserViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mUserViewModel = new UserViewModel(getApplication());
 
         usernameText = findViewById(R.id.usr_input);
         passwordText = findViewById(R.id.pass_input);
@@ -49,14 +50,12 @@ public class LoginActivity extends AppCompatActivity {
                 userName = usernameText.getText().toString().trim();
                 userPassword = passwordText.getText().toString().trim();
 
-
                 if (userPassword.isEmpty() || userName.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Enter username and password",
                             Toast.LENGTH_SHORT).show();
                 }else{
 
-                    userRepository = new UserRepository(getApplication());
-                    User user = userRepository.findUser(userName.toLowerCase());
+                    User user = mUserViewModel.findUser(userName.toLowerCase());
                     if(user != null && PasswordHash.verifyHash(userPassword, user.getPassword())){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                     } else{
                         Toast.makeText(LoginActivity.this, "Incorrect login credentials",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     }
                 }
             }

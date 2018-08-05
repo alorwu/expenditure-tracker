@@ -1,8 +1,8 @@
 
 package org.az20.expendituretracker.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -13,20 +13,27 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.database.Category;
 import org.az20.expendituretracker.helpers.Validation;
+import org.az20.expendituretracker.viewmodels.CategoryViewModel;
 
 public class CategoryDialogFragment extends DialogFragment implements View.OnClickListener{
 
-    TextInputEditText titleText, amountText;
+    private TextInputEditText titleText, amountText;
+    private CategoryViewModel categoryViewModel;
+    private Activity activity;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-        View mView = getActivity().getLayoutInflater().inflate(R.layout.fragment_dialog, null);
+        activity = getActivity();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(activity);
+        View mView = activity.getLayoutInflater().inflate(R.layout.fragment_dialog, null);
 
         mBuilder.setView(mView);
         mBuilder.setTitle(R.string.add_category);
+
+        categoryViewModel = new CategoryViewModel(activity.getApplication());
 
         titleText = mView.findViewById(R.id.et_title);
         amountText = mView.findViewById(R.id.et_amount);
@@ -55,11 +62,16 @@ public class CategoryDialogFragment extends DialogFragment implements View.OnCli
                     return;
                 }
                 if (!amount.isEmpty()) {
+                    Category category = new Category();
+                    category.setCatTitle(title);
+                    category.setCatAmount(Integer.parseInt(amount));
+                    category.setSpentAmount(0);
+                    categoryViewModel.addCategory(category);
                     Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();
                 }
                 else
-                    Toast.makeText(getContext(), " Amount field can't empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), " Amount field can't be empty.", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cancel_btn:
                 getDialog().dismiss();

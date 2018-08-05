@@ -13,10 +13,13 @@ import android.widget.Toast;
 
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.database.Income;
+import org.az20.expendituretracker.viewmodels.IncomeViewModel;
+
 import org.az20.expendituretracker.helpers.Validation;
 
 public class IncomeDialogFragment extends DialogFragment{
-
+    private IncomeViewModel incomeViewModel;
 
     @NonNull
     @Override
@@ -25,7 +28,9 @@ public class IncomeDialogFragment extends DialogFragment{
         View mView = getActivity().getLayoutInflater().inflate(R.layout.fragment_dialog, null);
 
         mBuilder.setView(mView);
-        mBuilder.setTitle(R.string.add_category);
+        mBuilder.setTitle(R.string.add_income);
+
+        incomeViewModel = new IncomeViewModel(getActivity().getApplication());
 
         final TextInputEditText titleText = mView.findViewById(R.id.et_title);
         final TextInputEditText amountText = mView.findViewById(R.id.et_amount);
@@ -45,11 +50,15 @@ public class IncomeDialogFragment extends DialogFragment{
                     return;
                 }
                 if (!amount.isEmpty()) {
+                    Income income = new Income();
+                    income.setIncomeTitle(title);
+                    income.setAmount(Integer.parseInt(amount));
+                    incomeViewModel.addIncome(income);
                     Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();
                 }
                 else
-                    Toast.makeText(getContext(), " Amount field can't empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), " Amount field can't be empty.", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -57,7 +66,6 @@ public class IncomeDialogFragment extends DialogFragment{
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
                 getDialog().dismiss();
             }
