@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
 
                     if (!Validation.nameValidation(userFullName)){
-                        usernameText.setError(getString(R.string.error_name));
+                        fullnameText.setError(getString(R.string.error_name));
                         return;
                     }
 
@@ -67,16 +67,15 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     if (!Validation.passwordValidation(userPassword)){
                         showAlert(getString(R.string.error_password));
-                        return;
                     }
 
-                    userRepository = new UserRepository(getApplication());
-                    userPassword = PasswordHash.hashPassword(userPassword);
+                    userRepository = new UserRepository(getApplication());userPassword = PasswordHash.hashPassword(userPassword);
                     User user = new User(userFullName, userName, userEmail, userPassword);
                     userRepository.addUser(user);
                     Toast.makeText(RegisterActivity.this,
-                                "Registered Successfully", Toast.LENGTH_SHORT).show();
+                            "Registered Successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
 
                 }
             }

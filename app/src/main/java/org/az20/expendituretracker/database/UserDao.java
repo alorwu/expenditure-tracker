@@ -12,8 +12,8 @@ public interface UserDao {
     @Insert
     void addUser(User user);
 
-    @Query("select * from users where username = :user and hashed_password =:password")
-    User findUser(String user, String password);
+    @Query("select * from users where username = :user")
+    User findUser(String user);
 
     // TODO: Not implemented yet
     @Delete

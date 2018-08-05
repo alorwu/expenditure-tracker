@@ -6,8 +6,7 @@ public class PasswordHash {
 
     public static String hashPassword(String password){
 
-        final int salt = 15;
-        return BCrypt.hashpw(password, BCrypt.gensalt(salt));
+        return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public static boolean verifyHash(String password, String hashedPassword){

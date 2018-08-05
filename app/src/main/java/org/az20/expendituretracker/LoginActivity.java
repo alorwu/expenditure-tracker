@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     userRepository = new UserRepository(getApplication());
-                    User user = userRepository.findUser(userName, userPassword);
+                    User user = userRepository.findUser(userName);
                     if(user != null && user.getUsername().equalsIgnoreCase(userName) &&
                             PasswordHash.verifyHash(userPassword, user.getPassword())){
                         Toast.makeText(LoginActivity.this, "Successful login",

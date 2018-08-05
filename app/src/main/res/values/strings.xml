@@ -34,4 +34,5 @@
     <string name="error_password">Password must have a minimum of 8 characters and must contain  at
         least a lower case letter, an uppercase letter, a number and a character.
     </string>
+    <string name="logout">Logout</string>
 </resources>
