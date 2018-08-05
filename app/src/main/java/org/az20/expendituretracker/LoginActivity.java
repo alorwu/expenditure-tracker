@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
 import org.az20.expendituretracker.database.UserRepository;
+import org.az20.expendituretracker.helpers.PasswordHash;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,8 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     userRepository = new UserRepository(getApplication());
-                    User user = userRepository.findUser(userName, userPassword);
-                    if(user != null && user.getUsername().equalsIgnoreCase(userName)){
+                    User user = userRepository.findUser(userName.toLowerCase());
+                    if(user != null && PasswordHash.verifyHash(userPassword, user.getPassword())){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
                         SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                         mEditor.putBoolean("logged_in", true);
                         mEditor.apply();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     } else{
                         Toast.makeText(LoginActivity.this, "Incorrect login credentials",
                                 Toast.LENGTH_LONG).show();
