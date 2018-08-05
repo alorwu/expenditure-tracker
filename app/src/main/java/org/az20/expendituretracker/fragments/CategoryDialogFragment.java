@@ -3,7 +3,6 @@ package org.az20.expendituretracker.fragments;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -15,9 +14,7 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Category;
-import org.az20.expendituretracker.viewmodel.CategoryViewModel;
-
-import java.util.Objects;
+import org.az20.expendituretracker.viewmodels.CategoryViewModel;
 
 public class CategoryDialogFragment extends DialogFragment implements View.OnClickListener{
 
@@ -62,6 +59,7 @@ public class CategoryDialogFragment extends DialogFragment implements View.OnCli
                     Category category = new Category();
                     category.setCatTitle(title);
                     category.setCatAmount(Integer.parseInt(amount));
+                    category.setSpentAmount(0);
                     categoryViewModel.addCategory(category);
                     Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();

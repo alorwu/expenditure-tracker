@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Income;
-import org.az20.expendituretracker.viewmodel.IncomeViewModel;
+import org.az20.expendituretracker.viewmodels.IncomeViewModel;
 
 public class IncomeDialogFragment extends DialogFragment{
     private IncomeViewModel incomeViewModel;

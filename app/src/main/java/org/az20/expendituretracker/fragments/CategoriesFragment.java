@@ -5,30 +5,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
-import com.github.mikephil.charting.data.DataSet;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.MPPointF;
 
 import org.az20.expendituretracker.R;
-import org.az20.expendituretracker.home.IncomeAdapter;
-import org.az20.expendituretracker.home.IncomeStub;
+import org.az20.expendituretracker.adapters.IncomeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
