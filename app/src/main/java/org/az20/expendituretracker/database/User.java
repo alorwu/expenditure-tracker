@@ -4,10 +4,12 @@ package org.az20.expendituretracker.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "users")
+@Entity(tableName = "users", indices = {@Index(value = {"username", "full_name", "user_email"}, unique = true)})
 public class User {
 
     @PrimaryKey(autoGenerate = true)
@@ -16,7 +18,7 @@ public class User {
     @ColumnInfo(name = "full_name")
     private String name;
 
-    @ColumnInfo(name = "username")
+    @ColumnInfo(name = "username" )
     private String username;
 
     @ColumnInfo(name = "user_email")

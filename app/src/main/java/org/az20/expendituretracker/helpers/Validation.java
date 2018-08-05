@@ -21,7 +21,7 @@ public class Validation {
         Pattern pattern;
         Matcher matcher;
 
-        final String USERNAME_PATTERN = "^([\\w]{4,})*$";
+        final String USERNAME_PATTERN = "^([\\w]{3,})*$";
         pattern = Pattern.compile(USERNAME_PATTERN);
         matcher = pattern.matcher(username);
         return matcher.matches();
@@ -32,7 +32,7 @@ public class Validation {
         Pattern pattern;
         Matcher matcher;
 
-        final String USERNAME_PATTERN = "^([a-zA-Z ]{8,})*$";
+        final String USERNAME_PATTERN = "^([a-zA-Z ]{4,})*$";
         pattern = Pattern.compile(USERNAME_PATTERN);
         matcher = pattern.matcher(name);
         return matcher.matches();
@@ -43,7 +43,7 @@ public class Validation {
         Pattern pattern;
         Matcher matcher;
 
-        final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#@$&*_()%])(?=.*[\\d]).{8,}$";
+        final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#@$&*_()%])(?=.*[\\d]).{5,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(pass);
         return matcher.matches();
