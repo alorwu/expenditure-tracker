@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     if (!Validation.userValidation(userName)){
-                        usernameText.setError(getString(R.string.error_name));
+                        usernameText.setError(getString(R.string.error_username));
                         return;
                     }
                     if (!Validation.emailValidation((userEmail))){
