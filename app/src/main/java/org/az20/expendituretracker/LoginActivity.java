@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
-import org.az20.expendituretracker.database.UserRepository;
 import org.az20.expendituretracker.viewmodel.UserViewModel;
 import org.az20.expendituretracker.helpers.PasswordHash;
 
