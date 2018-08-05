@@ -48,4 +48,15 @@ public class Validation {
         matcher = pattern.matcher(pass);
         return matcher.matches();
     }
+
+    public static boolean inputValidation(String input){
+
+        Pattern pattern;
+        Matcher matcher;
+
+        final String INPUT_PATTERN = "^([a-zA-Z ]{3,})*$";
+        pattern = Pattern.compile(INPUT_PATTERN);
+        matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
 }

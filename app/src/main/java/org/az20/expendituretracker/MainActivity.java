@@ -1,6 +1,8 @@
 package org.az20.expendituretracker;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.DialogFragment;
@@ -25,7 +27,7 @@ import org.az20.expendituretracker.fragments.IncomeDialogFragment;
 import org.az20.expendituretracker.fragments.SettingsFragment;
 import org.az20.expendituretracker.helpers.BottomNavigationViewHelper;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, SettingsFragment.FragmentListener{
 
     FloatingActionMenu floatingActionMenu;
 
@@ -122,6 +124,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager != null) {
             dialogFragment.show(fragmentManager, tag);
+        }
+    }
+
+
+    @Override
+    public void send(boolean log) {
+        if (!log) {
+            SharedPreferences logoutUser = getSharedPreferences("user", MODE_PRIVATE);
+            SharedPreferences.Editor editStatus = logoutUser.edit();
+            editStatus.putBoolean("logged_in", false);
+            editStatus.apply();
+
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
         }
     }
 }

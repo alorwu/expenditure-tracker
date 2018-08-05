@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userFullName = fullnameText.getText().toString();
-                userName = usernameText.getText().toString();
+                userName = usernameText.getText().toString().toLowerCase();
                 userEmail = emailText.getText().toString();
                 userPassword = passwordText.getText().toString();
 

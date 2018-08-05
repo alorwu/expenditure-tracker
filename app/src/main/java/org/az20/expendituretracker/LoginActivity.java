@@ -57,9 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
 
                     userRepository = new UserRepository(getApplication());
-                    User user = userRepository.findUser(userName);
-                    if(user != null && user.getUsername().equalsIgnoreCase(userName) &&
-                            PasswordHash.verifyHash(userPassword, user.getPassword())){
+                    User user = userRepository.findUser(userName.toLowerCase());
+                    if(user != null && PasswordHash.verifyHash(userPassword, user.getPassword())){
                         Toast.makeText(LoginActivity.this, "Successful login",
                                 Toast.LENGTH_SHORT).show();
                         SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);

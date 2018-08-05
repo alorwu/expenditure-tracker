@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.helpers.Validation;
 
 public class IncomeDialogFragment extends DialogFragment{
 
@@ -38,6 +39,11 @@ public class IncomeDialogFragment extends DialogFragment{
                 final String title = titleText.getText().toString().trim();
                 final String amount = amountText.getText().toString();
 
+
+                if (!Validation.inputValidation(title)) {
+                    Toast.makeText(getContext(), R.string.error_input, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!amount.isEmpty()) {
                     Toast.makeText(getContext(), title + " " + amount + " Saved successfully.", Toast.LENGTH_SHORT).show();
                     getDialog().dismiss();
