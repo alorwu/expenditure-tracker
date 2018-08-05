@@ -16,6 +16,7 @@ import android.widget.Toast;
 import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Expenses;
 import org.az20.expendituretracker.viewmodel.ExpensesViewModel;
+import org.az20.expendituretracker.helpers.Validation;
 
 public class ExpensesDialogFragment extends DialogFragment implements View.OnClickListener{
 
@@ -56,6 +57,11 @@ public class ExpensesDialogFragment extends DialogFragment implements View.OnCli
             case R.id.save_btn:
                 final String title = titleText.getText().toString().trim();
                 final String amount = amountText.getText().toString().trim();
+
+                if (!Validation.inputValidation(title)) {
+                    Toast.makeText(getContext(), R.string.error_input, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!amount.isEmpty()) {
                     Expenses expenses = new Expenses();
                     expenses.setExpensesTitle(title);

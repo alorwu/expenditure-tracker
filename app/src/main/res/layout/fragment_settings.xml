@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SettingsFragment">
+    tools:context=".fragments.SettingsFragment"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -11,5 +12,16 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/settings" />
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="@string/logout"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:layout_gravity="bottom"
+        />
 
 </FrameLayout>

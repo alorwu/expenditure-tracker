@@ -16,6 +16,8 @@ import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Income;
 import org.az20.expendituretracker.viewmodel.IncomeViewModel;
 
+import org.az20.expendituretracker.helpers.Validation;
+
 public class IncomeDialogFragment extends DialogFragment{
     private IncomeViewModel incomeViewModel;
 
@@ -42,6 +44,11 @@ public class IncomeDialogFragment extends DialogFragment{
                 final String title = titleText.getText().toString().trim();
                 final String amount = amountText.getText().toString();
 
+
+                if (!Validation.inputValidation(title)) {
+                    Toast.makeText(getContext(), R.string.error_input, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!amount.isEmpty()) {
                     Income income = new Income();
                     income.setIncomeTitle(title);

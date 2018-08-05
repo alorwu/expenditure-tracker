@@ -17,7 +17,7 @@ import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Category;
 import org.az20.expendituretracker.viewmodel.CategoryViewModel;
 
-import java.util.Objects;
+import org.az20.expendituretracker.helpers.Validation;
 
 public class CategoryDialogFragment extends DialogFragment implements View.OnClickListener{
 
@@ -58,6 +58,11 @@ public class CategoryDialogFragment extends DialogFragment implements View.OnCli
             case R.id.save_btn:
                 final String title = titleText.getText().toString().trim();
                 final String amount = amountText.getText().toString().trim();
+
+                if (!Validation.inputValidation(title)) {
+                    Toast.makeText(getContext(), R.string.error_input, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!amount.isEmpty()) {
                     Category category = new Category();
                     category.setCatTitle(title);

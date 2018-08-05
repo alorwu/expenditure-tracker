@@ -15,8 +15,8 @@ public class UserViewModel extends AndroidViewModel {
         userRepository = new UserRepository(application);
     }
 
-    public User findUser(String username, String password) {
-        return userRepository.findUser(username, password);
+    public User findUser(String username) {
+        return userRepository.findUser(username);
     }
 
     public void addUser(User user) {
