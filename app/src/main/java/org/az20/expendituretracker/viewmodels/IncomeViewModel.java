@@ -1,4 +1,4 @@
-package org.az20.expendituretracker.viewmodel;
+package org.az20.expendituretracker.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

@@ -3,7 +3,6 @@ package org.az20.expendituretracker.fragments;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
@@ -15,8 +14,8 @@ import android.widget.Toast;
 
 import org.az20.expendituretracker.R;
 import org.az20.expendituretracker.database.Expenses;
-import org.az20.expendituretracker.viewmodel.ExpensesViewModel;
 import org.az20.expendituretracker.helpers.Validation;
+import org.az20.expendituretracker.viewmodels.ExpensesViewModel;
 
 public class ExpensesDialogFragment extends DialogFragment implements View.OnClickListener{
 

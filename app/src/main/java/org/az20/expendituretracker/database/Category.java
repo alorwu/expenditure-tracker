@@ -11,6 +11,7 @@ public class Category {
     private int catID;
     private String catTitle;
     private int catAmount;
+    private int spentAmount;
 
     @Ignore
     public Category(String catTitle, int amount){
@@ -42,5 +43,13 @@ public class Category {
 
     public void setCatAmount(int amount) {
         this.catAmount = amount;
+    }
+
+    public int getSpentAmount() {
+        return spentAmount;
+    }
+
+    public void setSpentAmount(int spentAmount) {
+        this.spentAmount = spentAmount;
     }
 }

@@ -13,10 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
-import org.az20.expendituretracker.database.UserRepository;
-import org.az20.expendituretracker.viewmodel.UserViewModel;
 import org.az20.expendituretracker.helpers.PasswordHash;
 import org.az20.expendituretracker.helpers.Validation;
+import org.az20.expendituretracker.viewmodels.UserViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -76,7 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
                             "Registered Successfully", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     finish();
-
                 }
             }
         });

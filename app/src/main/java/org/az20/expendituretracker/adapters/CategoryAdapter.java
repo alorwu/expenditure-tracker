@@ -1,21 +1,22 @@
-package org.az20.expendituretracker.home;
+package org.az20.expendituretracker.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.database.Category;
+
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ExpenseViewHolder> {
-    List<CategoryStub> categoryStubList;
-    CategoryStub categoryStub;
+    List<Category> categoryList;
+    Category category;
     Context mContext;
 
     public CategoryAdapter(Context context) {
@@ -31,33 +32,33 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Expens
 
     @Override
     public void onBindViewHolder(@NonNull ExpenseViewHolder holder, int position) {
-        categoryStub = categoryStubList.get(holder.getAdapterPosition());
+        category = categoryList.get(holder.getAdapterPosition());
 
-        if(categoryStub != null) {
-            holder.expenseName.setText(categoryStub.getName());
-            holder.budgetSpent.setText(categoryStub.getSpentBudget());
-            holder.actualBudget.setText(categoryStub.getActualBudget());
-            holder.remaining.setText(remainingBudget(categoryStub.getActualBudget(), categoryStub.getSpentBudget()));
-            holder.progressBar.setProgress(progressPercent(categoryStub.getActualBudget(), categoryStub.getSpentBudget()));
+        if(category != null) {
+            holder.expenseName.setText(category.getCatTitle());
+            holder.budgetSpent.setText(String.valueOf(category.getSpentAmount()));
+            holder.actualBudget.setText(String.valueOf(category.getCatAmount()));
+            holder.remaining.setText(remainingBudget(category.getCatAmount(), category.getSpentAmount()));
+            holder.progressBar.setProgress(progressPercent(category.getCatAmount(), category.getSpentAmount()));
         }
     }
 
-    private String remainingBudget(String actual, String spent) {
-        return String.valueOf(Integer.parseInt(actual) - Integer.parseInt(spent));
+    private String remainingBudget(int actual, int spent) {
+        return String.valueOf(actual - spent);
     }
 
-    private int progressPercent(String actual, String spent) {
-        return (int) ((Double.parseDouble(spent) / Double.parseDouble(actual)) * 100);
+    private int progressPercent(double actual, double spent) {
+        return (int) ((spent / actual) * 100);
     }
 
     @Override
     public int getItemCount() {
-        if(categoryStubList != null) return categoryStubList.size();
+        if(categoryList != null) return categoryList.size();
         else return 0;
     }
 
-    public void setCategories(List<CategoryStub> categoryStubs) {
-        this.categoryStubList = categoryStubs;
+    public void setCategories(List<Category> categories) {
+        this.categoryList = categories;
         notifyDataSetChanged();
     }
 

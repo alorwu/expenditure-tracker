@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.az20.expendituretracker.database.User;
-import org.az20.expendituretracker.viewmodel.UserViewModel;
 import org.az20.expendituretracker.helpers.PasswordHash;
+import org.az20.expendituretracker.viewmodels.UserViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 

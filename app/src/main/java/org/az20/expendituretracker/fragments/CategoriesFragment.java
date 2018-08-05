@@ -5,50 +5,29 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
-import com.github.mikephil.charting.data.DataSet;
-import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.MPPointF;
 
 import org.az20.expendituretracker.R;
-import org.az20.expendituretracker.home.IncomeAdapter;
-import org.az20.expendituretracker.home.IncomeStub;
+import org.az20.expendituretracker.adapters.IncomeAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CategoriesFragment extends Fragment {
-
-    RecyclerView categoryRecyclerView;
-//    LinearLayout categoryChart;
-
-//    private static int[] COLORS = new int[] { Color.GREEN, Color.BLUE,Color.MAGENTA, Color.CYAN, Color.RED, Color.YELLOW, Color.GRAY };
-//    private static double[] VALUES = new double[] { 10, 11, 12, 13 };
-//    private static String[] NAME_LIST = new String[] { "A", "B", "C", "D" };
-//    private CategorySeries mSeries = new CategorySeries("");
-//    private DefaultRenderer mRenderer = new DefaultRenderer();
-//    private GraphicalView mChartView;
 
     private IncomeAdapter adapter;
 
 
-    com.github.mikephil.charting.charts.PieChart mChart;
+    PieChart mChart;
 
     public CategoriesFragment() {
         // Required empty public constructor
@@ -89,17 +68,6 @@ public class CategoriesFragment extends Fragment {
         return view;
     }
 
-    private List<IncomeStub> getAllIncome() {
-        List<IncomeStub> newList = new ArrayList<>();
-        newList.add(new IncomeStub("Salary", "$200.00"));
-        newList.add(new IncomeStub("Mobile money", "$55.00"));
-        newList.add(new IncomeStub("Dad", "$90.00"));
-        newList.add(new IncomeStub("Eric reimbursement", "$20.00"));
-        newList.add(new IncomeStub("Crypto benefit", "$300.00"));
-        newList.add(new IncomeStub("Salary", "$200.00"));
-        return newList;
-    }
-
     private void setData() {
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"};
         ArrayList<PieEntry> entries = new ArrayList<>();
@@ -112,7 +80,6 @@ public class CategoriesFragment extends Fragment {
         // add a lot of colors
 
         ArrayList<Integer> colors = new ArrayList<>();
-
         for (int c : ColorTemplate.VORDIPLOM_COLORS)
             colors.add(c);
 

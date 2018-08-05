@@ -1,6 +1,5 @@
-package org.az20.expendituretracker.home;
+package org.az20.expendituretracker.adapters;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.az20.expendituretracker.R;
+import org.az20.expendituretracker.database.Income;
 
 import java.util.List;
 
 public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeViewHolder> {
 
-    List<IncomeStub> incomeStubList;
-    IncomeStub incomeStub;
+    List<Income> incomeList;
+    Income income;
     Context mContext;
 
     public IncomeAdapter(Context context) {
@@ -33,26 +33,26 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeView
 
     @Override
     public void onBindViewHolder(@NonNull IncomeViewHolder holder, int position) {
-        incomeStub = incomeStubList.get(holder.getAdapterPosition());
+        income = incomeList.get(holder.getAdapterPosition());
 
-        if(incomeStub != null) {
-            holder.incomeDescription.setText(incomeStub.getName());
-            holder.amount.setText(incomeStub.getAmount());
-            holder.firstLetter.setText(getFirstLetter(incomeStub.getName()));
+        if(income != null) {
+            holder.incomeDescription.setText(income.getIncomeTitle());
+            holder.amount.setText(String.valueOf(income.getAmount()));
+            holder.firstLetter.setText(getFirstLetter(income.getIncomeTitle()));
         }
     }
 
     @Override
     public int getItemCount() {
-        return incomeStubList == null ? 0 : incomeStubList.size();
+        return incomeList == null ? 0 : incomeList.size();
     }
 
     private String getFirstLetter(String name) {
         return String.valueOf(name.charAt(0));
     }
 
-    public void setIncomeStubList(List<IncomeStub> stubs) {
-        this.incomeStubList = stubs;
+    public void setIncomeList(List<Income> list) {
+        this.incomeList = list;
         notifyDataSetChanged();
     }
 
